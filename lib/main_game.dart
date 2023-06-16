@@ -1,9 +1,8 @@
-import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 
 import 'routes/routes.dart';
 
-class MainGame extends FlameGame {
+class MainGame extends FlameGame with HasCollisionDetection {
   late final RouterComponent router;
   var score = 0;
 

@@ -1,12 +1,15 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flame/components.dart';
-import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
 
 import '../main_game.dart';
+import '../components/components.dart';
 
 class Play extends Component with HasGameRef<MainGame> {
+  static final _random = Random();
+
   late final TextComponent _scoreText;
 
   @override
@@ -32,15 +35,27 @@ class Play extends Component with HasGameRef<MainGame> {
     );
 
     await add(
-      ButtonComponent(
-        position: Vector2(0, game.size.y),
-        onPressed: () => game.router.pushNamed('result'),
-        button: TextComponent(
-          text: 'Result',
+      Wheel(
+        position: Vector2(
+          game.size.x * 0.5,
+          game.size.y * 0.7,
         ),
-        anchor: Anchor.bottomLeft,
+        size: Vector2(
+          game.size.y * 0.3,
+          game.size.y * 0.3,
+        ),
+        onSuccess: _onSuccess,
+        onFail: _onFail,
       ),
     );
+  }
+
+  @override
+  void onMount() {
+    super.onMount();
+
+    game.score = 0;
+    _addBall();
   }
 
   @override
@@ -48,5 +63,28 @@ class Play extends Component with HasGameRef<MainGame> {
     super.update(dt);
 
     _scoreText.text = game.score.toString();
+  }
+
+  Future _onSuccess() async {
+    _addBall();
+    game.score++;
+  }
+
+  Future _onFail() async {
+    game.router.pushReplacementNamed('result');
+  }
+
+  Future _addBall() async {
+    final radius = game.size.y * 0.02;
+    await add(
+      Ball(
+        radius: radius,
+        position: Vector2(
+          game.size.x * 0.5,
+          -radius,
+        ),
+        colorIndex: _random.nextInt(Wheel.colors.length),
+      ),
+    );
   }
 }

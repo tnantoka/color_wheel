@@ -31,7 +31,7 @@ class Home extends Component with HasGameRef<MainGame> {
 
     await add(
       ButtonComponent(
-        onPressed: () => game.router.pushNamed('play'),
+        onPressed: () => game.router.pushReplacementNamed('play'),
         button: TextComponent(
           text: 'Tap to Play',
           textRenderer: TextPaint(

@@ -7,12 +7,14 @@ import 'package:flutter/material.dart';
 import '../main_game.dart';
 
 class Result extends Component with HasGameRef<MainGame> {
+  late final TextComponent _scoreText;
+
   @override
   Future<void> onLoad() async {
     super.onLoad();
 
     await add(
-      TextComponent(
+      _scoreText = TextComponent(
         text: 'Score: ${game.score}',
         textRenderer: TextPaint(
           style: const TextStyle(
@@ -31,7 +33,7 @@ class Result extends Component with HasGameRef<MainGame> {
 
     await add(
       ButtonComponent(
-        onPressed: () => game.router.pushNamed('home'),
+        onPressed: () => game.router.pushReplacementNamed('home'),
         button: TextComponent(
           text: 'Tap to Back',
           textRenderer: TextPaint(
@@ -49,5 +51,12 @@ class Result extends Component with HasGameRef<MainGame> {
         anchor: Anchor.center,
       ),
     );
+  }
+
+  @override
+  void onMount() {
+    super.onMount();
+
+    _scoreText.text = 'Score: ${game.score}';
   }
 }
