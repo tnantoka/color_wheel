@@ -1,6 +1,6 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import 'main_game.dart';
 
@@ -26,12 +26,15 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
-        statusBarBrightness: Brightness.dark,
-      ),
-      child: GameWidget<MainGame>(
+    return Scaffold(
+      body: GameWidget<MainGame>(
         game: game,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () =>
+            launchUrlString('https://github.com/tnantoka/color_wheel'),
+        backgroundColor: Colors.blueGrey,
+        child: const Icon(Icons.code),
       ),
     );
   }

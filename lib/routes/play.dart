@@ -28,7 +28,7 @@ class Play extends Component with HasGameRef<MainGame> {
         ),
         position: Vector2(
           game.size.x * 0.5,
-          game.size.y * 0.4,
+          game.size.y * 0.3,
         ),
         anchor: Anchor.center,
       ),
