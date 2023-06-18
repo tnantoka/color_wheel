@@ -6,9 +6,10 @@ import 'package:flame/events.dart';
 import 'package:flutter/material.dart';
 
 import 'ball.dart';
+import '../main_game.dart';
 
 class Wheel extends CustomPainterComponent
-    with HasGameRef, TapCallbacks, CollisionCallbacks {
+    with HasGameRef<MainGame>, TapCallbacks, CollisionCallbacks {
   Wheel({
     super.position,
     super.size,
@@ -38,7 +39,7 @@ class Wheel extends CustomPainterComponent
 
     painter = WheelPainter(
         colors: colors,
-        backgroundColor: game.backgroundColor(),
+        backgroundColor: game.contentBackgroundColor,
         colorIndex: _colorIndex);
 
     await add(

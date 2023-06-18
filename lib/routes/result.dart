@@ -19,13 +19,13 @@ class Result extends Component with HasGameRef<MainGame> {
         textRenderer: TextPaint(
           style: const TextStyle(
             fontFamily: 'PressStart2P',
-            fontSize: 32,
+            fontSize: 28,
             color: Colors.white,
           ),
         ),
         position: Vector2(
-          game.size.x * 0.5,
-          game.size.y * 0.4,
+          game.contentSize.x * 0.5,
+          game.contentSize.y * 0.4,
         ),
         anchor: Anchor.center,
       ),
@@ -39,14 +39,14 @@ class Result extends Component with HasGameRef<MainGame> {
           textRenderer: TextPaint(
             style: const TextStyle(
               fontFamily: 'PressStart2P',
-              fontSize: 24,
+              fontSize: 20,
               color: Colors.white,
             ),
           ),
         ),
         position: Vector2(
-          game.size.x * 0.5,
-          game.size.y * 0.6,
+          game.contentSize.x * 0.5,
+          game.contentSize.y * 0.6,
         ),
         anchor: Anchor.center,
       ),
