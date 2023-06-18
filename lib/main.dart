@@ -14,6 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+      ),
       home: MyHomePage(),
     );
   }
@@ -26,16 +29,32 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GameWidget<MainGame>(
-        game: game,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () =>
-            launchUrlString('https://github.com/tnantoka/color_wheel'),
-        backgroundColor: Colors.blueGrey,
-        child: const Icon(Icons.code),
-      ),
+    return Stack(
+      children: [
+        GameWidget<MainGame>(
+          game: game,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ElevatedButton.icon(
+                onPressed: () => launchUrlString('https://flame.tnantoka.com/'),
+                icon: const Icon(Icons.home),
+                label: const Text('Home'),
+              ),
+              const SizedBox(height: 8),
+              ElevatedButton.icon(
+                onPressed: () =>
+                    launchUrlString('https://github.com/tnantoka/color_wheel'),
+                icon: const Icon(Icons.code),
+                label: const Text('GitHub'),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

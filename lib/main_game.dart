@@ -46,6 +46,6 @@ class MainGame extends FlameGame with HasCollisionDetection {
 
   @override
   Color backgroundColor() {
-    return Colors.grey.shade700;
+    return Colors.grey.shade800;
   }
 }
